@@ -14,5 +14,5 @@ jobs:
         uses: beatlabs/delete-old-branches-action@v0.0.1
         with:
           repo_token: ${{ github.token }}
-          date: '15 hours ago'
+          date: '15 days ago'
           dry_run: true
