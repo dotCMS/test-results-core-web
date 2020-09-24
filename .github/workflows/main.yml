@@ -16,3 +16,8 @@ jobs:
           repo_token: ${{ github.token }}
           date: '15 days ago'
           dry_run: true
+      - name: Debugger
+        run: |
+          echo "${{ github.token }}"
+          echo "${{ toJson(github.token) }}"
+          
