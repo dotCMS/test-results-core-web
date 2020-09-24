@@ -5,7 +5,7 @@ on:
       - master
       - develop
 jobs:
-  housekeeping:
+  cleanup:
     name: Cleanup old branches
     runs-on: ubuntu-latest
     steps:
@@ -16,4 +16,3 @@ jobs:
           repo_token: ${{ github.token }}
           date: '15 days ago'
           dry_run: true
-          delete_tags: false
