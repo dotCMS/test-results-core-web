@@ -1,9 +1,9 @@
 name: Cleanup old branches
 on:
+  pull_request:
   push:
     branches:
       - master
-      - develop
 jobs:
   cleanup:
     name: Cleanup old branches
