@@ -5,9 +5,9 @@
     "passes": 0,
     "pending": 0,
     "failures": 1,
-    "start": "2021-06-04T20:46:58.457Z",
-    "end": "2021-06-04T20:47:21.498Z",
-    "duration": 23041,
+    "start": "2021-06-04T22:00:59.132Z",
+    "end": "2021-06-04T22:01:22.277Z",
+    "duration": 23145,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "b631e976-e1d6-4b68-85ec-282164564420",
+      "uuid": "a766d491-7002-44da-8dc6-8bfb365ee52c",
       "title": "",
       "fullFile": "src/integration/DotTemplates/index.spec.ts",
       "file": "src/integration/DotTemplates/index.spec.ts",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "b61ba886-03c7-4e0e-9c8f-b4ad33864adf",
+          "uuid": "79243e88-8cff-4fa4-9b9a-8000dc3e49e5",
           "title": "Templates",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Create Template and create Page with content using previous template",
               "fullTitle": "Templates Create Template and create Page with content using previous template",
               "timedOut": null,
-              "duration": 23026,
+              "duration": 23094,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -51,8 +51,8 @@
                 "estack": "CypressError: Timed out retrying after 5000ms: `cy.wait()` timed out waiting `5000ms` for the 1st request to the route: `templates`. No request ever occurred.\n\nhttps://on.cypress.io/wait\n    at cypressErr (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:174135:18)\n    at Object.errByPath (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:174186:10)\n    at checkForXhr (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:161229:33)\n    at http://dotcms-app:8080/__cypress/runner/cypress_runner.js:161252:28\n    at tryCatcher (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:10765:23)\n    at Function.Promise.attempt.Promise.try (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:8039:29)\n    at tryFn (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:167007:21)\n    at whenStable (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:167045:12)\n    at http://dotcms-app:8080/__cypress/runner/cypress_runner.js:166540:16\n    at tryCatcher (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:10765:23)\n    at Promise._settlePromiseFromHandler (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:8700:31)\n    at Promise._settlePromise (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:8757:18)\n    at Promise._settlePromise0 (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:8802:10)\n    at Promise._settlePromises (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:8882:18)\n    at Promise._fulfill (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:8826:18)\n    at http://dotcms-app:8080/__cypress/runner/cypress_runner.js:10440:46\nFrom Your Spec Code:\n    at Context.eval (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:349:13)",
                 "diff": null
               },
-              "uuid": "f2c42721-bed5-406f-b81c-b59d3dbd2207",
-              "parentUUID": "b61ba886-03c7-4e0e-9c8f-b4ad33864adf",
+              "uuid": "fb5e69d8-3e8c-4c2e-a863-c48a588f5f92",
+              "parentUUID": "79243e88-8cff-4fa4-9b9a-8000dc3e49e5",
               "isHook": false,
               "skipped": false
             }
@@ -60,11 +60,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "f2c42721-bed5-406f-b81c-b59d3dbd2207"
+            "fb5e69d8-3e8c-4c2e-a863-c48a588f5f92"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 23026,
+          "duration": 23094,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
