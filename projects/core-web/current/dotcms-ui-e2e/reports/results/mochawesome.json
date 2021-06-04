@@ -5,9 +5,9 @@
     "passes": 0,
     "pending": 0,
     "failures": 1,
-    "start": "2021-06-04T22:29:31.515Z",
-    "end": "2021-06-04T22:30:09.038Z",
-    "duration": 37523,
+    "start": "2021-06-04T23:15:50.475Z",
+    "end": "2021-06-04T23:16:51.510Z",
+    "duration": 61035,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "4b245c2b-8f84-4955-bc26-d4520938bbcf",
+      "uuid": "e015b840-1546-448c-9f6b-8fc46397485e",
       "title": "",
       "fullFile": "src/integration/DotTemplates/index.spec.ts",
       "file": "src/integration/DotTemplates/index.spec.ts",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "726865c7-8cf4-45a2-928a-14cf2b9ce08e",
+          "uuid": "aa3bb720-21a1-41f4-864b-13f678b02286",
           "title": "Templates",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Create Template and create Page with content using previous template",
               "fullTitle": "Templates Create Template and create Page with content using previous template",
               "timedOut": null,
-              "duration": 37447,
+              "duration": 60956,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -47,12 +47,12 @@
               "context": "[\n  \"../screenshots/DotTemplates/index.spec.ts/Templates -- Create Template and create Page with content using previous template (failed).png\",\n  \"../videos/DotTemplates/index.spec.ts.mp4\"\n]",
               "code": "// Load Page\npages_DotTemplates_DotTemplates.openPage();\npages_DotTemplates_DotTemplates.checkTemplatesPageLoaded();\n// Create Template\npages_DotTemplates_DotTemplates.openCreateTemplateDialog();\npages_DotTemplates_DotTemplates.fillCreateTemplateForm({ title: 'CypressTemplate', theme: 'default' });\npages_DotTemplates_DotTemplates.submitCreateTemplateForm();\n// Edit Template\npages_DotTemplates_DotTemplates.checkEditTemplatesPageLoaded();\npages_DotTemplates_DotTemplates.addContainer({ type: 'Default - default' });\npages_DotTemplates_DotTemplates.saveEditTemplate();\n// Site Browser\ncy.log('Opening DotSiteBrowser');\npages_DotSiteBrowser_DotSiteBrowser.openPage();\npages_DotSiteBrowser_DotSiteBrowser.checkSiteBrowserPageLoaded();\npages_DotSiteBrowser_DotSiteBrowser.openCreatePageDialog({ type: 'Page' });\npages_DotSiteBrowser_DotSiteBrowser.fillCreatePageForm({\n    title: PAGE_NAME,\n    template: 'CypressTemplatedefault'\n});\npages_DotSiteBrowser_DotSiteBrowser.submitCreatePageForm({ action: 'Save' });\nDotSiteBrowser_DotEditPage.goToMode({ type: 'Edit' });\nDotSiteBrowser_DotEditPage.openAddToContainerDialog({ type: 'Content' });\nDotSiteBrowser_DotEditPage.addElementToContainer({ elementIndex: 0 });\nDotSiteBrowser_DotEditPage.checkToastMessage({ message: 'All changes Saved' });\nDotSiteBrowser_DotEditPage.goToMode({ type: 'Preview' });\nDotSiteBrowser_DotEditPage.checkContainerMustHaveElements({ container: '#section-1', size: 1 });",
               "err": {
-                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Show Archived' within the element: <p-checkbox> but never did.",
-                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Show Archived' within the element: <p-checkbox> but never did.\n    at Function.assertElementContainsText (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:378:53)\n    at Function.checkTemplatesPageLoaded (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:538:21)\n    at Context.eval (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:620:41)",
+                "message": "AssertionError: Timed out retrying after 10000ms: Expected to find element: `#p-tabpanel-0-label .p-tabview-title`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 10000ms: Expected to find element: `#p-tabpanel-0-label .p-tabview-title`, but never found it.\n    at Function.assertElementContainsText (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:378:19)\n    at Function.checkEditTemplatesPageLoaded (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:563:21)\n    at Context.eval (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:628:41)",
                 "diff": null
               },
-              "uuid": "1efbf120-870b-4c76-a886-526117573aea",
-              "parentUUID": "726865c7-8cf4-45a2-928a-14cf2b9ce08e",
+              "uuid": "9d572537-c3f4-4c3b-a5ee-421defd37067",
+              "parentUUID": "aa3bb720-21a1-41f4-864b-13f678b02286",
               "isHook": false,
               "skipped": false
             }
@@ -60,11 +60,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "1efbf120-870b-4c76-a886-526117573aea"
+            "9d572537-c3f4-4c3b-a5ee-421defd37067"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 37447,
+          "duration": 60956,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
