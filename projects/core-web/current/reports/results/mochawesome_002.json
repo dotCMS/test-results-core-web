@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2021-06-04T16:38:58.108Z",
+    "end": "2021-06-04T16:38:58.358Z",
+    "duration": 250,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "b50b062d-d635-46a9-9d2a-0fb13e1be3d6",
+      "title": "",
+      "fullFile": "src/integration/test/index2.spec.ts",
+      "file": "src/integration/test/index2.spec.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "16b11c45-8e2f-4512-b9b5-8a12970f2b4d",
+          "title": "My First Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Does not do much!",
+              "fullTitle": "My First Test Does not do much!",
+              "timedOut": null,
+              "duration": 215,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "[\n  \"../screenshots/test/index2.spec.ts/My First Test -- Does not do much! (failed).png\",\n  \"../videos/test/index2.spec.ts.mp4\"\n]",
+              "code": "expect(true).to.equal(false);",
+              "err": {
+                "message": "AssertionError: expected true to equal false",
+                "estack": "AssertionError: expected true to equal false\n    at Context.eval (http://dotcms-app:8080/__cypress/tests?p=src/integration/test/index2.spec.ts:100:25)",
+                "diff": null
+              },
+              "uuid": "a1e90e49-c671-4fdd-aa33-53ac7943ca93",
+              "parentUUID": "16b11c45-8e2f-4512-b9b5-8a12970f2b4d",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "a1e90e49-c671-4fdd-aa33-53ac7943ca93"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 215,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "../../dist/cypress/apps/dotcms-ui-e2e/reports/results",
+        "html": false,
+        "json": true,
+        "overwrite": false
+      },
+      "version": "5.2.0"
+    }
+  }
+}
