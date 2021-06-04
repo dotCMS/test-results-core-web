@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2021-06-04T15:20:53.610Z",
+    "end": "2021-06-04T15:21:16.592Z",
+    "duration": 22982,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f04ba767-1ccd-423c-bebe-984a4b19efc5",
+      "title": "",
+      "fullFile": "src/integration/DotTemplates/index.spec.ts",
+      "file": "src/integration/DotTemplates/index.spec.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "f8a2a93a-53e1-47a1-9af9-3ede9fa44410",
+          "title": "Templates",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Create Template and create Page with content using previous template",
+              "fullTitle": "Templates Create Template and create Page with content using previous template",
+              "timedOut": null,
+              "duration": 22954,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "[\n  \"../screenshots/DotTemplates/index.spec.ts/Templates -- Create Template and create Page with content using previous template (failed).png\",\n  \"../videos/DotTemplates/index.spec.ts.mp4\"\n]",
+              "code": "// Load Page\npages_DotTemplates_DotTemplates.openPage();\npages_DotTemplates_DotTemplates.checkTemplatesPageLoaded();\n// Create Template\npages_DotTemplates_DotTemplates.openCreateTemplateDialog();\npages_DotTemplates_DotTemplates.fillCreateTemplateForm({ title: 'CypressTemplate', theme: 'default' });\npages_DotTemplates_DotTemplates.submitCreateTemplateForm();\n// Edit Template\npages_DotTemplates_DotTemplates.checkEditTemplatesPageLoaded();\npages_DotTemplates_DotTemplates.addContainer({ type: 'Default - default' });\npages_DotTemplates_DotTemplates.saveEditTemplate();\n// Site Browser\ncy.log('Opening DotSiteBrowser');\npages_DotSiteBrowser_DotSiteBrowser.openPage();\npages_DotSiteBrowser_DotSiteBrowser.checkSiteBrowserPageLoaded();\npages_DotSiteBrowser_DotSiteBrowser.openCreatePageDialog({ type: 'Page' });\npages_DotSiteBrowser_DotSiteBrowser.fillCreatePageForm({\n    title: PAGE_NAME,\n    template: 'CypressTemplatedefault'\n});\npages_DotSiteBrowser_DotSiteBrowser.submitCreatePageForm({ action: 'Save' });\nDotSiteBrowser_DotEditPage.goToMode({ type: 'Edit' });\nDotSiteBrowser_DotEditPage.openAddToContainerDialog({ type: 'Content' });\nDotSiteBrowser_DotEditPage.addElementToContainer({ elementIndex: 0 });\nDotSiteBrowser_DotEditPage.checkToastMessage({ message: 'All changes Saved' });\nDotSiteBrowser_DotEditPage.goToMode({ type: 'Preview' });\nDotSiteBrowser_DotEditPage.checkContainerMustHaveElements({ container: '#section-1', size: 1 });",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected 'http://dotcms-app:8080/dotAdmin/#/templates' to equal 'http://localhost:8080/dotAdmin/#/templates'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected 'http://dotcms-app:8080/dotAdmin/#/templates' to equal 'http://localhost:8080/dotAdmin/#/templates'\n    at Function.assertPageUrlIs (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:350:14)\n    at Function.openPage (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:529:27)\n    at Context.eval (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:617:41)",
+                "diff": "- 'http://dotcms-app:8080/dotAdmin/#/templates'\n+ 'http://localhost:8080/dotAdmin/#/templates'\n"
+              },
+              "uuid": "3fdadc47-cf3d-4311-96e7-ae7c14292392",
+              "parentUUID": "f8a2a93a-53e1-47a1-9af9-3ede9fa44410",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "3fdadc47-cf3d-4311-96e7-ae7c14292392"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 22954,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "../../dist/cypress/apps/dotcms-ui-e2e/reports/results",
+        "html": false,
+        "json": true,
+        "overwrite": false
+      },
+      "version": "5.2.0"
+    }
+  }
+}

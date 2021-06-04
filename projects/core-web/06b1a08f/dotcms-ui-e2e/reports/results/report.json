@@ -1,0 +1,229 @@
+{
+  "stats": {
+    "suites": 3,
+    "tests": 3,
+    "passes": 1,
+    "pending": 0,
+    "failures": 2,
+    "start": "2021-06-04T15:20:53.610Z",
+    "end": "2021-06-04T15:21:39.567Z",
+    "duration": 23205,
+    "testsRegistered": 3,
+    "passPercent": 33.333333333333336,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f04ba767-1ccd-423c-bebe-984a4b19efc5",
+      "title": "",
+      "fullFile": "src/integration/DotTemplates/index.spec.ts",
+      "file": "src/integration/DotTemplates/index.spec.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "f8a2a93a-53e1-47a1-9af9-3ede9fa44410",
+          "title": "Templates",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Create Template and create Page with content using previous template",
+              "fullTitle": "Templates Create Template and create Page with content using previous template",
+              "timedOut": null,
+              "duration": 22954,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "[\n  \"../screenshots/DotTemplates/index.spec.ts/Templates -- Create Template and create Page with content using previous template (failed).png\",\n  \"../videos/DotTemplates/index.spec.ts.mp4\"\n]",
+              "code": "// Load Page\npages_DotTemplates_DotTemplates.openPage();\npages_DotTemplates_DotTemplates.checkTemplatesPageLoaded();\n// Create Template\npages_DotTemplates_DotTemplates.openCreateTemplateDialog();\npages_DotTemplates_DotTemplates.fillCreateTemplateForm({ title: 'CypressTemplate', theme: 'default' });\npages_DotTemplates_DotTemplates.submitCreateTemplateForm();\n// Edit Template\npages_DotTemplates_DotTemplates.checkEditTemplatesPageLoaded();\npages_DotTemplates_DotTemplates.addContainer({ type: 'Default - default' });\npages_DotTemplates_DotTemplates.saveEditTemplate();\n// Site Browser\ncy.log('Opening DotSiteBrowser');\npages_DotSiteBrowser_DotSiteBrowser.openPage();\npages_DotSiteBrowser_DotSiteBrowser.checkSiteBrowserPageLoaded();\npages_DotSiteBrowser_DotSiteBrowser.openCreatePageDialog({ type: 'Page' });\npages_DotSiteBrowser_DotSiteBrowser.fillCreatePageForm({\n    title: PAGE_NAME,\n    template: 'CypressTemplatedefault'\n});\npages_DotSiteBrowser_DotSiteBrowser.submitCreatePageForm({ action: 'Save' });\nDotSiteBrowser_DotEditPage.goToMode({ type: 'Edit' });\nDotSiteBrowser_DotEditPage.openAddToContainerDialog({ type: 'Content' });\nDotSiteBrowser_DotEditPage.addElementToContainer({ elementIndex: 0 });\nDotSiteBrowser_DotEditPage.checkToastMessage({ message: 'All changes Saved' });\nDotSiteBrowser_DotEditPage.goToMode({ type: 'Preview' });\nDotSiteBrowser_DotEditPage.checkContainerMustHaveElements({ container: '#section-1', size: 1 });",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected 'http://dotcms-app:8080/dotAdmin/#/templates' to equal 'http://localhost:8080/dotAdmin/#/templates'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected 'http://dotcms-app:8080/dotAdmin/#/templates' to equal 'http://localhost:8080/dotAdmin/#/templates'\n    at Function.assertPageUrlIs (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:350:14)\n    at Function.openPage (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:529:27)\n    at Context.eval (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:617:41)",
+                "diff": "- 'http://dotcms-app:8080/dotAdmin/#/templates'\n+ 'http://localhost:8080/dotAdmin/#/templates'\n"
+              },
+              "uuid": "3fdadc47-cf3d-4311-96e7-ae7c14292392",
+              "parentUUID": "f8a2a93a-53e1-47a1-9af9-3ede9fa44410",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "3fdadc47-cf3d-4311-96e7-ae7c14292392"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 22954,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "ba39d8f5-2191-4686-91ff-a43f4cda347e",
+      "title": "",
+      "fullFile": "src/integration/test/index.spec.ts",
+      "file": "src/integration/test/index.spec.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d2b35d59-c7e8-4648-9652-b57e1c62794d",
+          "title": "My First Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Does not do much!",
+              "fullTitle": "My First Test Does not do much!",
+              "timedOut": null,
+              "duration": 50,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "expect(true).to.equal(true);",
+              "err": {},
+              "uuid": "38902706-ee81-4e61-abbc-fc4c19779714",
+              "parentUUID": "d2b35d59-c7e8-4648-9652-b57e1c62794d",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "38902706-ee81-4e61-abbc-fc4c19779714"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 50,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "e2e80a69-fd27-446d-97ec-b6519d3b9a7b",
+      "title": "",
+      "fullFile": "src/integration/test/index2.spec.ts",
+      "file": "src/integration/test/index2.spec.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "9fc365c2-cf39-4682-bc60-71a9aafaf8e0",
+          "title": "My First Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Does not do much!",
+              "fullTitle": "My First Test Does not do much!",
+              "timedOut": null,
+              "duration": 201,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "[\n  \"../screenshots/test/index2.spec.ts/My First Test -- Does not do much! (failed).png\",\n  \"../videos/test/index2.spec.ts.mp4\"\n]",
+              "code": "expect(true).to.equal(false);",
+              "err": {
+                "message": "AssertionError: expected true to equal false",
+                "estack": "AssertionError: expected true to equal false\n    at Context.eval (http://dotcms-app:8080/__cypress/tests?p=src/integration/test/index2.spec.ts:100:25)",
+                "diff": null
+              },
+              "uuid": "d577dede-ac6a-4fe4-a708-80743ef301ad",
+              "parentUUID": "9fc365c2-cf39-4682-bc60-71a9aafaf8e0",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "d577dede-ac6a-4fe4-a708-80743ef301ad"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 201,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "../../dist/cypress/apps/dotcms-ui-e2e/reports/results",
+        "html": false,
+        "json": true,
+        "overwrite": false
+      },
+      "version": "5.2.0"
+    }
+  }
+}
