@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2021-06-04T15:21:30.898Z",
-    "end": "2021-06-04T15:21:30.993Z",
-    "duration": 95,
+    "start": "2021-06-04T20:47:31.560Z",
+    "end": "2021-06-04T20:47:31.622Z",
+    "duration": 62,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "ba39d8f5-2191-4686-91ff-a43f4cda347e",
+      "uuid": "0a595597-13a7-4c2d-a272-231698f9f65b",
       "title": "",
       "fullFile": "src/integration/test/index.spec.ts",
       "file": "src/integration/test/index.spec.ts",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "d2b35d59-c7e8-4648-9652-b57e1c62794d",
+          "uuid": "8d07ac8b-4e32-4dc6-940e-dfad073c17d2",
           "title": "My First Test",
           "fullFile": "",
           "file": "",
@@ -38,29 +38,29 @@
               "title": "Does not do much!",
               "fullTitle": "My First Test Does not do much!",
               "timedOut": null,
-              "duration": 50,
+              "duration": 37,
               "state": "passed",
-              "speed": "medium",
+              "speed": "fast",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
               "code": "expect(true).to.equal(true);",
               "err": {},
-              "uuid": "38902706-ee81-4e61-abbc-fc4c19779714",
-              "parentUUID": "d2b35d59-c7e8-4648-9652-b57e1c62794d",
+              "uuid": "9aaa9a75-3147-46fc-adc4-52f6b266d944",
+              "parentUUID": "8d07ac8b-4e32-4dc6-940e-dfad073c17d2",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "38902706-ee81-4e61-abbc-fc4c19779714"
+            "9aaa9a75-3147-46fc-adc4-52f6b266d944"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 50,
+          "duration": 37,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
