@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2021-06-04T22:01:35.424Z",
-    "end": "2021-06-04T22:01:52.117Z",
-    "duration": 16693,
+    "start": "2021-06-04T22:30:23.075Z",
+    "end": "2021-06-04T22:30:39.615Z",
+    "duration": 16540,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "5492150a-54ec-4e8e-bc03-be1f2f181751",
+      "uuid": "ea082bd9-04de-4d49-8da4-61aa5fa2788d",
       "title": "",
       "fullFile": "src/integration/DotTemplates/index2.spec.ts",
       "file": "src/integration/DotTemplates/index2.spec.ts",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "96aeda53-fec3-4bc0-8692-d1dbac1784d6",
+          "uuid": "016e7d85-65c6-4869-b3a7-8754638916b1",
           "title": "Test",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "lgin page",
               "fullTitle": "Test lgin page",
               "timedOut": null,
-              "duration": 16625,
+              "duration": 16508,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "cy.visit('/dotAdmin');\ncy.wait(10000);\nshared_Form.fill('#inputtext', 'cypress Admin');\ncy.wait(5000);\nshared_Form.fill('input[type=\"password\"]', 'cypressPassw');",
               "err": {},
-              "uuid": "2b33d1ed-53b5-4c7c-8468-0c663b24dd39",
-              "parentUUID": "96aeda53-fec3-4bc0-8692-d1dbac1784d6",
+              "uuid": "919747f9-8ad2-491e-bc5e-b0d28f9b8e69",
+              "parentUUID": "016e7d85-65c6-4869-b3a7-8754638916b1",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "2b33d1ed-53b5-4c7c-8468-0c663b24dd39"
+            "919747f9-8ad2-491e-bc5e-b0d28f9b8e69"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 16625,
+          "duration": 16508,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

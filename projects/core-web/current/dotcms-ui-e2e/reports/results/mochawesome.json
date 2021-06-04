@@ -5,9 +5,9 @@
     "passes": 0,
     "pending": 0,
     "failures": 1,
-    "start": "2021-06-04T22:00:59.132Z",
-    "end": "2021-06-04T22:01:22.277Z",
-    "duration": 23145,
+    "start": "2021-06-04T22:29:31.515Z",
+    "end": "2021-06-04T22:30:09.038Z",
+    "duration": 37523,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "a766d491-7002-44da-8dc6-8bfb365ee52c",
+      "uuid": "4b245c2b-8f84-4955-bc26-d4520938bbcf",
       "title": "",
       "fullFile": "src/integration/DotTemplates/index.spec.ts",
       "file": "src/integration/DotTemplates/index.spec.ts",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "79243e88-8cff-4fa4-9b9a-8000dc3e49e5",
+          "uuid": "726865c7-8cf4-45a2-928a-14cf2b9ce08e",
           "title": "Templates",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Create Template and create Page with content using previous template",
               "fullTitle": "Templates Create Template and create Page with content using previous template",
               "timedOut": null,
-              "duration": 23094,
+              "duration": 37447,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -47,12 +47,12 @@
               "context": "[\n  \"../screenshots/DotTemplates/index.spec.ts/Templates -- Create Template and create Page with content using previous template (failed).png\",\n  \"../videos/DotTemplates/index.spec.ts.mp4\"\n]",
               "code": "// Load Page\npages_DotTemplates_DotTemplates.openPage();\npages_DotTemplates_DotTemplates.checkTemplatesPageLoaded();\n// Create Template\npages_DotTemplates_DotTemplates.openCreateTemplateDialog();\npages_DotTemplates_DotTemplates.fillCreateTemplateForm({ title: 'CypressTemplate', theme: 'default' });\npages_DotTemplates_DotTemplates.submitCreateTemplateForm();\n// Edit Template\npages_DotTemplates_DotTemplates.checkEditTemplatesPageLoaded();\npages_DotTemplates_DotTemplates.addContainer({ type: 'Default - default' });\npages_DotTemplates_DotTemplates.saveEditTemplate();\n// Site Browser\ncy.log('Opening DotSiteBrowser');\npages_DotSiteBrowser_DotSiteBrowser.openPage();\npages_DotSiteBrowser_DotSiteBrowser.checkSiteBrowserPageLoaded();\npages_DotSiteBrowser_DotSiteBrowser.openCreatePageDialog({ type: 'Page' });\npages_DotSiteBrowser_DotSiteBrowser.fillCreatePageForm({\n    title: PAGE_NAME,\n    template: 'CypressTemplatedefault'\n});\npages_DotSiteBrowser_DotSiteBrowser.submitCreatePageForm({ action: 'Save' });\nDotSiteBrowser_DotEditPage.goToMode({ type: 'Edit' });\nDotSiteBrowser_DotEditPage.openAddToContainerDialog({ type: 'Content' });\nDotSiteBrowser_DotEditPage.addElementToContainer({ elementIndex: 0 });\nDotSiteBrowser_DotEditPage.checkToastMessage({ message: 'All changes Saved' });\nDotSiteBrowser_DotEditPage.goToMode({ type: 'Preview' });\nDotSiteBrowser_DotEditPage.checkContainerMustHaveElements({ container: '#section-1', size: 1 });",
               "err": {
-                "message": "CypressError: Timed out retrying after 5000ms: `cy.wait()` timed out waiting `5000ms` for the 1st request to the route: `templates`. No request ever occurred.\n\nhttps://on.cypress.io/wait",
-                "estack": "CypressError: Timed out retrying after 5000ms: `cy.wait()` timed out waiting `5000ms` for the 1st request to the route: `templates`. No request ever occurred.\n\nhttps://on.cypress.io/wait\n    at cypressErr (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:174135:18)\n    at Object.errByPath (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:174186:10)\n    at checkForXhr (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:161229:33)\n    at http://dotcms-app:8080/__cypress/runner/cypress_runner.js:161252:28\n    at tryCatcher (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:10765:23)\n    at Function.Promise.attempt.Promise.try (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:8039:29)\n    at tryFn (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:167007:21)\n    at whenStable (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:167045:12)\n    at http://dotcms-app:8080/__cypress/runner/cypress_runner.js:166540:16\n    at tryCatcher (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:10765:23)\n    at Promise._settlePromiseFromHandler (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:8700:31)\n    at Promise._settlePromise (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:8757:18)\n    at Promise._settlePromise0 (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:8802:10)\n    at Promise._settlePromises (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:8882:18)\n    at Promise._fulfill (http://dotcms-app:8080/__cypress/runner/cypress_runner.js:8826:18)\n    at http://dotcms-app:8080/__cypress/runner/cypress_runner.js:10440:46\nFrom Your Spec Code:\n    at Context.eval (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:349:13)",
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Show Archived' within the element: <p-checkbox> but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Show Archived' within the element: <p-checkbox> but never did.\n    at Function.assertElementContainsText (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:378:53)\n    at Function.checkTemplatesPageLoaded (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:538:21)\n    at Context.eval (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:620:41)",
                 "diff": null
               },
-              "uuid": "fb5e69d8-3e8c-4c2e-a863-c48a588f5f92",
-              "parentUUID": "79243e88-8cff-4fa4-9b9a-8000dc3e49e5",
+              "uuid": "1efbf120-870b-4c76-a886-526117573aea",
+              "parentUUID": "726865c7-8cf4-45a2-928a-14cf2b9ce08e",
               "isHook": false,
               "skipped": false
             }
@@ -60,11 +60,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "fb5e69d8-3e8c-4c2e-a863-c48a588f5f92"
+            "1efbf120-870b-4c76-a886-526117573aea"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 23094,
+          "duration": 37447,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
