@@ -5,9 +5,9 @@
     "passes": 2,
     "pending": 0,
     "failures": 2,
-    "start": "2021-06-07T14:52:15.880Z",
-    "end": "2021-06-07T14:53:54.573Z",
-    "duration": 64153,
+    "start": "2021-06-07T15:32:28.822Z",
+    "end": "2021-06-07T15:33:53.170Z",
+    "duration": 49018,
     "testsRegistered": 4,
     "passPercent": 50,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "ddcea58e-3579-4826-b2c2-a0b17ddb91c3",
+      "uuid": "4cf50688-dc49-43de-9e4b-827fa64a4bf1",
       "title": "",
       "fullFile": "src/integration/DotTemplates/index.spec.ts",
       "file": "src/integration/DotTemplates/index.spec.ts",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "ff905637-13c3-4325-b732-0d3d3347391a",
+          "uuid": "c6cd995a-59d5-4b98-9c91-144939a7a827",
           "title": "Templates",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Create Template and create Page with content using previous template",
               "fullTitle": "Templates Create Template and create Page with content using previous template",
               "timedOut": null,
-              "duration": 47468,
+              "duration": 32195,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -47,12 +47,12 @@
               "context": "[\n  \"../screenshots/DotTemplates/index.spec.ts/Templates -- Create Template and create Page with content using previous template (failed).png\",\n  \"../videos/DotTemplates/index.spec.ts.mp4\"\n]",
               "code": "// Load Page\npages_DotTemplates_DotTemplates.openPage();\npages_DotTemplates_DotTemplates.checkTemplatesPageLoaded();\n// Create Template\npages_DotTemplates_DotTemplates.openCreateTemplateDialog();\npages_DotTemplates_DotTemplates.fillCreateTemplateForm({ title: 'CypressTemplate', theme: 'default' });\npages_DotTemplates_DotTemplates.submitCreateTemplateForm();\n// Edit Template\npages_DotTemplates_DotTemplates.checkEditTemplatesPageLoaded();\npages_DotTemplates_DotTemplates.addContainer({ type: 'Default - default' });\npages_DotTemplates_DotTemplates.saveEditTemplate();\n// Site Browser\ncy.log('Opening DotSiteBrowser');\npages_DotSiteBrowser_DotSiteBrowser.openPage();\npages_DotSiteBrowser_DotSiteBrowser.checkSiteBrowserPageLoaded();\npages_DotSiteBrowser_DotSiteBrowser.openCreatePageDialog({ type: 'Page' });\npages_DotSiteBrowser_DotSiteBrowser.fillCreatePageForm({\n    title: PAGE_NAME,\n    template: 'CypressTemplatedefault'\n});\npages_DotSiteBrowser_DotSiteBrowser.submitCreatePageForm({ action: 'Save' });\nDotSiteBrowser_DotEditPage.goToMode({ type: 'Edit' });\nDotSiteBrowser_DotEditPage.openAddToContainerDialog({ type: 'Content' });\nDotSiteBrowser_DotEditPage.addElementToContainer({ elementIndex: 0 });\nDotSiteBrowser_DotEditPage.checkToastMessage({ message: 'All changes Saved' });\nDotSiteBrowser_DotEditPage.goToMode({ type: 'Preview' });\nDotSiteBrowser_DotEditPage.checkContainerMustHaveElements({ container: '#section-1', size: 1 });",
               "err": {
-                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Show Archived' within the element: <p-checkbox> but never did.",
-                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Show Archived' within the element: <p-checkbox> but never did.\n    at Function.assertElementContainsText (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:378:53)\n    at Function.checkTemplatesPageLoaded (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:540:21)\n    at Context.eval (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:622:41)",
+                "message": "AssertionError: Timed out retrying after 10000ms: Expected to find element: `.p-breadcrumb > ul > :nth-child(3)`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 10000ms: Expected to find element: `.p-breadcrumb > ul > :nth-child(3)`, but never found it.\n    at Function.assertElementContainsText (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:378:19)\n    at Function.checkTemplatesPageLoaded (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:537:21)\n    at Context.eval (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:622:41)",
                 "diff": null
               },
-              "uuid": "ba5b6958-4be5-4b11-b27f-dd671a1a9804",
-              "parentUUID": "ff905637-13c3-4325-b732-0d3d3347391a",
+              "uuid": "a0c39ad8-19a8-4589-bd73-794e2a6b5ea3",
+              "parentUUID": "c6cd995a-59d5-4b98-9c91-144939a7a827",
               "isHook": false,
               "skipped": false
             }
@@ -60,11 +60,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "ba5b6958-4be5-4b11-b27f-dd671a1a9804"
+            "a0c39ad8-19a8-4589-bd73-794e2a6b5ea3"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 47468,
+          "duration": 32195,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -80,7 +80,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "b784de0f-0a7c-4dbd-ae5c-3deba25593ec",
+      "uuid": "75479929-9ca0-4d89-a919-7980d1120c99",
       "title": "",
       "fullFile": "src/integration/DotTemplates/index2.spec.ts",
       "file": "src/integration/DotTemplates/index2.spec.ts",
@@ -89,7 +89,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "32b7e649-d68b-4604-93e7-d85bcc57b3f9",
+          "uuid": "39f2a5a9-e9de-451a-9c9e-16a9857ec9e8",
           "title": "Test",
           "fullFile": "",
           "file": "",
@@ -100,7 +100,7 @@
               "title": "lgin page",
               "fullTitle": "Test lgin page",
               "timedOut": null,
-              "duration": 16451,
+              "duration": 16575,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -109,20 +109,20 @@
               "context": null,
               "code": "cy.visit('/dotAdmin');\ncy.wait(10000);\nshared_Form.fill('#inputtext', 'cypress Admin');\ncy.wait(5000);\nshared_Form.fill('input[type=\"password\"]', 'cypressPassw');",
               "err": {},
-              "uuid": "9debeebb-1e68-4132-8d82-20b06ba604e6",
-              "parentUUID": "32b7e649-d68b-4604-93e7-d85bcc57b3f9",
+              "uuid": "523c01d8-6a55-4463-b07f-fa181d5e8dbd",
+              "parentUUID": "39f2a5a9-e9de-451a-9c9e-16a9857ec9e8",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "9debeebb-1e68-4132-8d82-20b06ba604e6"
+            "523c01d8-6a55-4463-b07f-fa181d5e8dbd"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 16451,
+          "duration": 16575,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -138,7 +138,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "8829b604-2b2a-43a3-810b-1ca3aea8581b",
+      "uuid": "e30bb32c-6fa8-4ae1-b693-204a7bcd700a",
       "title": "",
       "fullFile": "src/integration/test/index.spec.ts",
       "file": "src/integration/test/index.spec.ts",
@@ -147,7 +147,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "026e5f60-cebd-4819-85d3-e8040d5e9a54",
+          "uuid": "3da8f7b4-09a0-4072-b412-ec6c8a26631d",
           "title": "My First Test",
           "fullFile": "",
           "file": "",
@@ -158,7 +158,7 @@
               "title": "Does not do much!",
               "fullTitle": "My First Test Does not do much!",
               "timedOut": null,
-              "duration": 44,
+              "duration": 52,
               "state": "passed",
               "speed": "medium",
               "pass": true,
@@ -167,20 +167,20 @@
               "context": null,
               "code": "expect(true).to.equal(true);",
               "err": {},
-              "uuid": "427ddcef-72db-490b-96e5-ded097d2648d",
-              "parentUUID": "026e5f60-cebd-4819-85d3-e8040d5e9a54",
+              "uuid": "033f5ebd-230f-46b9-810e-42f398104a48",
+              "parentUUID": "3da8f7b4-09a0-4072-b412-ec6c8a26631d",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "427ddcef-72db-490b-96e5-ded097d2648d"
+            "033f5ebd-230f-46b9-810e-42f398104a48"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 44,
+          "duration": 52,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -196,7 +196,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "2ee5a5d8-564f-4766-921d-a3e68d8d1b52",
+      "uuid": "b49b5cbb-7125-4f62-9788-1955936b92e4",
       "title": "",
       "fullFile": "src/integration/test/index2.spec.ts",
       "file": "src/integration/test/index2.spec.ts",
@@ -205,7 +205,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "de3a724e-c881-4fe9-8bb5-c1ce80504320",
+          "uuid": "c9051d10-ac9e-4ec3-9090-64c58d1aaa06",
           "title": "My First Test",
           "fullFile": "",
           "file": "",
@@ -216,7 +216,7 @@
               "title": "Does not do much!",
               "fullTitle": "My First Test Does not do much!",
               "timedOut": null,
-              "duration": 190,
+              "duration": 196,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -229,8 +229,8 @@
                 "estack": "AssertionError: expected true to equal false\n    at Context.eval (http://dotcms-app:8080/__cypress/tests?p=src/integration/test/index2.spec.ts:100:25)",
                 "diff": null
               },
-              "uuid": "068a5e05-d71c-4888-9f11-9eca215d1ecf",
-              "parentUUID": "de3a724e-c881-4fe9-8bb5-c1ce80504320",
+              "uuid": "379b190d-4b32-4ccd-ad7f-2bd0566046da",
+              "parentUUID": "c9051d10-ac9e-4ec3-9090-64c58d1aaa06",
               "isHook": false,
               "skipped": false
             }
@@ -238,11 +238,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "068a5e05-d71c-4888-9f11-9eca215d1ecf"
+            "379b190d-4b32-4ccd-ad7f-2bd0566046da"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 190,
+          "duration": 196,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

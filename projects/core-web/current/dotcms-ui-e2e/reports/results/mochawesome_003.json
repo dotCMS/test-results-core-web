@@ -5,9 +5,9 @@
     "passes": 0,
     "pending": 0,
     "failures": 1,
-    "start": "2021-06-07T14:53:54.360Z",
-    "end": "2021-06-07T14:53:54.573Z",
-    "duration": 213,
+    "start": "2021-06-07T15:33:52.945Z",
+    "end": "2021-06-07T15:33:53.170Z",
+    "duration": 225,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "2ee5a5d8-564f-4766-921d-a3e68d8d1b52",
+      "uuid": "b49b5cbb-7125-4f62-9788-1955936b92e4",
       "title": "",
       "fullFile": "src/integration/test/index2.spec.ts",
       "file": "src/integration/test/index2.spec.ts",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "de3a724e-c881-4fe9-8bb5-c1ce80504320",
+          "uuid": "c9051d10-ac9e-4ec3-9090-64c58d1aaa06",
           "title": "My First Test",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Does not do much!",
               "fullTitle": "My First Test Does not do much!",
               "timedOut": null,
-              "duration": 190,
+              "duration": 196,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -51,8 +51,8 @@
                 "estack": "AssertionError: expected true to equal false\n    at Context.eval (http://dotcms-app:8080/__cypress/tests?p=src/integration/test/index2.spec.ts:100:25)",
                 "diff": null
               },
-              "uuid": "068a5e05-d71c-4888-9f11-9eca215d1ecf",
-              "parentUUID": "de3a724e-c881-4fe9-8bb5-c1ce80504320",
+              "uuid": "379b190d-4b32-4ccd-ad7f-2bd0566046da",
+              "parentUUID": "c9051d10-ac9e-4ec3-9090-64c58d1aaa06",
               "isHook": false,
               "skipped": false
             }
@@ -60,11 +60,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "068a5e05-d71c-4888-9f11-9eca215d1ecf"
+            "379b190d-4b32-4ccd-ad7f-2bd0566046da"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 190,
+          "duration": 196,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

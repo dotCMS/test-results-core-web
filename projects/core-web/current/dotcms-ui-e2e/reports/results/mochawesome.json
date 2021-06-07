@@ -5,9 +5,9 @@
     "passes": 0,
     "pending": 0,
     "failures": 1,
-    "start": "2021-06-07T14:52:15.880Z",
-    "end": "2021-06-07T14:53:03.433Z",
-    "duration": 47553,
+    "start": "2021-06-07T15:32:28.822Z",
+    "end": "2021-06-07T15:33:01.064Z",
+    "duration": 32242,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "ddcea58e-3579-4826-b2c2-a0b17ddb91c3",
+      "uuid": "4cf50688-dc49-43de-9e4b-827fa64a4bf1",
       "title": "",
       "fullFile": "src/integration/DotTemplates/index.spec.ts",
       "file": "src/integration/DotTemplates/index.spec.ts",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "ff905637-13c3-4325-b732-0d3d3347391a",
+          "uuid": "c6cd995a-59d5-4b98-9c91-144939a7a827",
           "title": "Templates",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Create Template and create Page with content using previous template",
               "fullTitle": "Templates Create Template and create Page with content using previous template",
               "timedOut": null,
-              "duration": 47468,
+              "duration": 32195,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -47,12 +47,12 @@
               "context": "[\n  \"../screenshots/DotTemplates/index.spec.ts/Templates -- Create Template and create Page with content using previous template (failed).png\",\n  \"../videos/DotTemplates/index.spec.ts.mp4\"\n]",
               "code": "// Load Page\npages_DotTemplates_DotTemplates.openPage();\npages_DotTemplates_DotTemplates.checkTemplatesPageLoaded();\n// Create Template\npages_DotTemplates_DotTemplates.openCreateTemplateDialog();\npages_DotTemplates_DotTemplates.fillCreateTemplateForm({ title: 'CypressTemplate', theme: 'default' });\npages_DotTemplates_DotTemplates.submitCreateTemplateForm();\n// Edit Template\npages_DotTemplates_DotTemplates.checkEditTemplatesPageLoaded();\npages_DotTemplates_DotTemplates.addContainer({ type: 'Default - default' });\npages_DotTemplates_DotTemplates.saveEditTemplate();\n// Site Browser\ncy.log('Opening DotSiteBrowser');\npages_DotSiteBrowser_DotSiteBrowser.openPage();\npages_DotSiteBrowser_DotSiteBrowser.checkSiteBrowserPageLoaded();\npages_DotSiteBrowser_DotSiteBrowser.openCreatePageDialog({ type: 'Page' });\npages_DotSiteBrowser_DotSiteBrowser.fillCreatePageForm({\n    title: PAGE_NAME,\n    template: 'CypressTemplatedefault'\n});\npages_DotSiteBrowser_DotSiteBrowser.submitCreatePageForm({ action: 'Save' });\nDotSiteBrowser_DotEditPage.goToMode({ type: 'Edit' });\nDotSiteBrowser_DotEditPage.openAddToContainerDialog({ type: 'Content' });\nDotSiteBrowser_DotEditPage.addElementToContainer({ elementIndex: 0 });\nDotSiteBrowser_DotEditPage.checkToastMessage({ message: 'All changes Saved' });\nDotSiteBrowser_DotEditPage.goToMode({ type: 'Preview' });\nDotSiteBrowser_DotEditPage.checkContainerMustHaveElements({ container: '#section-1', size: 1 });",
               "err": {
-                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Show Archived' within the element: <p-checkbox> but never did.",
-                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Show Archived' within the element: <p-checkbox> but never did.\n    at Function.assertElementContainsText (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:378:53)\n    at Function.checkTemplatesPageLoaded (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:540:21)\n    at Context.eval (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:622:41)",
+                "message": "AssertionError: Timed out retrying after 10000ms: Expected to find element: `.p-breadcrumb > ul > :nth-child(3)`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 10000ms: Expected to find element: `.p-breadcrumb > ul > :nth-child(3)`, but never found it.\n    at Function.assertElementContainsText (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:378:19)\n    at Function.checkTemplatesPageLoaded (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:537:21)\n    at Context.eval (http://dotcms-app:8080/__cypress/tests?p=src/integration/DotTemplates/index.spec.ts:622:41)",
                 "diff": null
               },
-              "uuid": "ba5b6958-4be5-4b11-b27f-dd671a1a9804",
-              "parentUUID": "ff905637-13c3-4325-b732-0d3d3347391a",
+              "uuid": "a0c39ad8-19a8-4589-bd73-794e2a6b5ea3",
+              "parentUUID": "c6cd995a-59d5-4b98-9c91-144939a7a827",
               "isHook": false,
               "skipped": false
             }
@@ -60,11 +60,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "ba5b6958-4be5-4b11-b27f-dd671a1a9804"
+            "a0c39ad8-19a8-4589-bd73-794e2a6b5ea3"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 47468,
+          "duration": 32195,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
