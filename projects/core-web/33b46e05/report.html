@@ -1,0 +1,1663 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>report</title>
+<style>
+body { background-color: #eeeeee; padding: 0; margin: 5px; overflow-y: scroll; }
+#HTMLReporter h1 { font-size: 12px; font-weight: normal; text-align: right; margin: 10px 0 10px 0 !important; }
+#HTMLReporter { font-size: 11px; font-family: Monaco, "Lucida Console", monospace; line-height: 14px; color: #333333; }
+#HTMLReporter a { text-decoration: none; }
+#HTMLReporter a:hover { text-decoration: underline; }
+#HTMLReporter p, #HTMLReporter h1, #HTMLReporter h2, #HTMLReporter h3, #HTMLReporter h4, #HTMLReporter h5, #HTMLReporter h6 { margin: 0; line-height: 14px; }
+#HTMLReporter .banner, #HTMLReporter .symbolSummary, #HTMLReporter .summary, #HTMLReporter .resultMessage, #HTMLReporter .specDetail .description, #HTMLReporter .alert .bar, #HTMLReporter .stackTrace { padding-left: 9px; padding-right: 9px; }
+
+#HTMLReporter #jasmine_content { position: fixed; right: 100%; }
+#HTMLReporter .version { color: #aaaaaa; }
+#HTMLReporter .banner { margin-top: 14px; }
+#HTMLReporter .duration { color: #aaaaaa; float: right; }
+#HTMLReporter .exceptions { color: #fff; float: right; margin-top: 5px; margin-right: 5px; }
+#HTMLReporter .bar { line-height: 28px; font-size: 14px; display: block; color: #eee; }
+#HTMLReporter .runningAlert { background-color: #666666; }
+#HTMLReporter .skippedAlert { background-color: #aaaaaa; }
+#HTMLReporter .skippedAlert:first-child { background-color: #333333; }
+#HTMLReporter .skippedAlert:hover { text-decoration: none; color: white; text-decoration: underline; }
+#HTMLReporter .passingAlert { background-color: #a6b779; }
+#HTMLReporter .passingAlert:first-child { background-color: #5e7d00; }
+#HTMLReporter .failingAlert { background-color: #cf867e; }
+#HTMLReporter .failingAlert:first-child { background-color: #b03911; }
+#HTMLReporter .results { margin-top: 14px; }
+#HTMLReporter #details { display: none; }
+#HTMLReporter .resultsMenu { color: #999; background-color: #fff; }
+
+#HTMLReporter .summaryMenuItem { font-weight: normal; text-decoration: none; margin-right: 5px; color: #333; }
+#HTMLReporter .detailsMenuItem { font-weight: normal; text-decoration: none; margin-left: 5px; color: #999; }
+
+#HTMLReporter.showDetails .summaryMenuItem { color: #999; }
+#HTMLReporter.showDetails .detailsMenuItem { color: #333; }
+#HTMLReporter.showDetails .summaryMenuItem:hover { text-decoration: underline; }
+#HTMLReporter             .detailsMenuItem:hover { text-decoration: underline; }
+
+
+#HTMLReporter.showDetails .summary { display: none; }
+#HTMLReporter.showDetails #details { display: block; }
+#HTMLReporter .summary { margin-top: 14px; margin-bottom: 40px; }
+#HTMLReporter .summary .suite .suite, #HTMLReporter .summary .specSummary { margin-left: 14px; }
+#HTMLReporter .summary .specSummary.passed { color: #5e7d00; }
+#HTMLReporter .summary .specSummary.failed { color: #b03911; }
+#HTMLReporter .summary .specSummary.skipped { color: #ba9d37; }
+#HTMLReporter .description + .suite { margin-top: 0; }
+#HTMLReporter .suite { margin-top: 14px; }
+#HTMLReporter .suite a { color: #333333; }
+#HTMLReporter #details .specDetail { margin-bottom: 28px; }
+#HTMLReporter #details .specDetail .description { display: block; color: white; background-color: #b03911; }
+#HTMLReporter .resultMessage { padding-top: 14px; color: #333333; }
+#HTMLReporter .resultMessage span.result { display: block; }
+#HTMLReporter .stackTrace { margin: 5px 0 0 0; max-height: 224px; overflow: auto; 
+    line-height: 18px; color: #666666; border: 1px solid #ddd; background: white; white-space: pre; }
+
+
+.fold-buttons { float: right; }
+.fold-buttons a { color: #fff; font-size: 12px; }
+.fold-buttons { display: none } 
+#HTMLReporter .br { margin-top: 8px; }
+#HTMLReporter .section-starter { font-size: 14px; line-height: 18px }
+#HTMLReporter .summary-section { 
+  cursor: -webkit-zoom-out; cursor: -moz-zoom-out; cursor: zoom-out; 
+  background: #fafafa; 
+  padding: 10px; 
+  border-bottom: #eaeaea 1px solid; }
+#HTMLReporter .summary-section.folded { 
+  cursor: -webkit-zoom-in; cursor: -moz-zoom-in; cursor: zoom-in; 
+  padding-bottom: 8px;
+}
+#HTMLReporter .summary-section.folded div { display: none }
+#HTMLReporter .summary-section.folded div.section-starter { display: block }
+/*#HTMLReporter .summary-section:hover { background: #e9e9e9; }*/
+#HTMLReporter .summary-section:hover { background: #f5f5f5; }
+#HTMLReporter .summary-section-totals { 
+  font-size: 11px;
+  display: none; 
+  margin-left: 11px; 
+  overflow: hidden; 
+  position: relative;
+  top: -1px; 
+}
+#HTMLReporter .summary-section.folded .summary-section-totals { display: inline; }
+#HTMLReporter .summary-section-total { color: #fff; vertical-align: baseline; padding: 1px 8px; }
+#HTMLReporter .summary-section-total.passed { background: #5e7d00;  }
+#HTMLReporter .summary-section-total.failed { background: #b03911;  }
+#HTMLReporter .summary-section-total.skipped { background: #ba9d37;  }
+
+#HTMLReporter { font-size: 12px; line-height: 18px; } /*larget font-size*/
+
+</style>
+</head>
+
+<body id="HTMLReporter" class="html-reporter">
+<h1>Tested in Chrome Headless 106.0.5249.119 (Linux x86_64) on Mon Oct 31 2022</h1>
+
+<div class="alert">
+
+
+
+  
+  <span class="passingAlert bar"><span class="fold-buttons"><a href="#" onclick="fold();">Fold</a> | 
+  <a href="#" onclick="unfold();">Unfold</a></span>2087 specs, 0 failed, 32 pending</span>
+  
+
+
+</div>
+<div class="results">
+  <div class="summary">
+  
+  
+  
+  
+  
+    <div class="suite passed">
+      <span class="description">DotContentletLockerService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should lock a content asset</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should unlock a content asset</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotTemplateThumbnailFieldComponent basic</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have fillted attr</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have basic attr</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotTemplateThumbnailFieldComponent basic events</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should show set asset and propagate</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show error because bad image</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set asset to null and propagate</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show error for invalid image url</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show default error</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotTemplateThumbnailFieldComponent formcontrol</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should set asset</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditLayoutService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">Should set _closeEditLayout to true</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit add box event</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Should set _canBeDesactivated to true</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should transform the grid data to LayoutBody to export the data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should transform the data from the service to the grid format </span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should transform the Sidebar data to ContainerColumnBox (ignore UNKNOWN ids) to export the data</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotTemplateCreateEditComponent Edit Design edit layout</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to listing if page site changes</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit template page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should saveAndPublishTemplate</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call saveWorkingTemplate when updateTemplate</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should save</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should cancel</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotTemplateCreateEditComponent Edit Design edit properties</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should open edit props form</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have edit button</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotTemplateCreateEditComponent Edit Design</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should load edit mode</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotTemplateCreateEditComponent Edit Advanced edit layout</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should call saveWorkingTemplate when updateTemplate</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should save</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotTemplateCreateEditComponent Create Design</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should open create dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not show extra components</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to template list when cancel dialog button is clicked</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should save template when save dialog button is clicked</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotTemplateCreateEditComponent Create Advanced</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should open create dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should save template when save dialog button is clicked</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotTemplateCreateEditComponent Forms</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have basic value</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update the form when state updates</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotFormResolver</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return resolve data when no license</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return resolve null when license is enterprise</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotContentletService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditPageLockInfoComponent default</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not have error messages</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditPageLockInfoComponent locked messages locked by another user</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have message</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should blink</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditPageLockInfoComponent locked messages permissions</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have don't have permissions messages</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotExperimentsEmptyExperimentsComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should show icon and title, not button</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show icon, title and button</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotGravatarService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">Should return null</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Should return the photos url</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotDownloadBundleDialogService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should receive bundleID</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotExperimentsListTableComponent Input experiments</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should has experiment with columns correctly rendered</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show 2 instances of NgPrime Table component</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show empty component with no experiments found</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotExperimentsListTableComponent Input experiments Actions icons</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should the row  has ARCHIVE icon when is ENDED</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should the row has DELETE icon when experiment is SCHEDULED</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should has DELETE icon when experiment is DRAFT</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should the row not has any icon in action column</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotExperimentsListTableComponent Output archiveItem</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit the $event on click</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotExperimentsListTableComponent Output deleteItem</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit the $event on click</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditContentHtmlService same height containers</span>
+    
+      <div class="specSummary skipped">
+      <span class="description">should redraw the body</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditContentHtmlService</span>
+    
+      <div class="specSummary skipped">
+      <span class="description">should render added Dot Asset</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should emit save when edit a piece of content outside a contentlet div</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should remove contentlet and update container toolbar</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should not render relocated contentlet</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should remove contentlet</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should add uploaded DotAsset</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should emit &quot;save&quot; event when remote rendered edit contentlet</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should show loading indicator on relocate contentlet</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should remove placeholder</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should handle http error</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should render relocated contentlet</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should show error message when the content already exists</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should add contentlet</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should render edit contentlet</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should render added contentlet</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should add base tag</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditContentHtmlService inline editing</span>
+    
+      <div class="specSummary skipped">
+      <span class="description">should return the content if an error occurs</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should not call saveContentlet if isNotDirty is true</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should call saveContentlet and save the content</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should display a toast on error</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditContentHtmlService document click</span>
+    
+      <div class="specSummary skipped">
+      <span class="description">should emit iframe action to edit content</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should emit iframe action to edit vtl</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should emit iframe action to add content</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should open sub menu</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should emit iframe action to remove content</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditContentHtmlService render Form</span>
+    
+      <div class="specSummary skipped">
+      <span class="description">should show content added message</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should render added form</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditContentHtmlService edit contentlets</span>
+    
+      <div class="specSummary skipped">
+      <span class="description">should render main contentlet edit</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should render internal contentlet edit</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should render edit vtl</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotDialogComponent with before close</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit beforeClose</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotDialogComponent regular close show with no bindEvents</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not bind keyboard events</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotDialogComponent regular close default</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not show close button</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not show footer buttons</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set appendToBody to false</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not show dialog</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotDialogComponent regular close show</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should show content</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have close button</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show action buttons</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add CSS class</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set width and height</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set the content custom styles</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not show buttons when hideButtons is true</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set the header custom styles</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set the header</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should append component to body</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show footer</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotDialogComponent regular close show events actions</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should close the dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call accept action</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show loading indicator when is saving</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">shouldn't show loading indicator when is not saving</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call cancel action when is set</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotDialogComponent regular close show events keyboard events</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should trigger cancel action and close the dialog on Escape</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should trigger cancel action and close the dialog on Escape</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should trigger accept action on ALT + Enter and unbind events</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should trigger accept action on CMD + Enter and unbind events</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotDialogComponent regular close show events</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not close the dialog on overlay click</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should close dialog and emit close</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">it should set shadow to header and footer on content scroll</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">it should click target on content scroll</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">PaginatorService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should do a request with basic pagination params</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should do a request with extra params</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should remove extra parameters</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should do a request with basic params</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotLocalstorageService getItem</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should get string</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get a boolean</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get an array</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotLocalstorageService removeItem</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should remove</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotLocalstorageService setItem</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should set object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set string</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotLocalstorageService listen</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should listen</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotLocalstorageService clear</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should clean</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditPageResolver</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return DotPageRenderState from local state</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should redirect to site-browser when request fail</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return a DotRenderedPageState</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditPageResolver handle layout</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle error and redirect to site-browser when layout is not drawed</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle error and redirect to site-browser when cant edit layout</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return a DotRenderedPageState</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditPageViewAsControllerComponent enterprise license</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit changes in Device</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should persona selector be disabled after haveContent is set to false</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit changes in personas</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should persona selector be enabled</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should propagate the values to the selector components on init</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should persona selector be enabled after haveContent is set to true</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have persona selector</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have Device selector with tooltip</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit changes in Language</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have Language selector</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditPageViewAsControllerComponent community license</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have only language</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotTemplateBuilderComponent permissions and history</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should set iframe history url</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should reload iframe when changes in the template happens</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle custom event</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set iframe permissions url</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotTemplateBuilderComponent design</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not show &lt;dot-template-advanced&gt;</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show dot-edit-layout-designer and pass attr</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit save events from dot-edit-layout-designer</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have tab title &quot;Design&quot;</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit save and publish event from dot-edit-layout-designer</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotTemplateBuilderComponent advanced</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit events from dot-template-advanced</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show dot-template-advanced and pass attr</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have tab title &quot;Design&quot;</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not show &lt;dot-edit-layout-designer&gt;</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotExperimentsCreateStore</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should save the experiment</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update isOpenSlider and isSaving to the store</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update isSaving to the store</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set initial data</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotPaletteContentTypeComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should show loading state</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should filter items on search</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set Dragged ContentType on dragStart</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not show loading state when switching view</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should list items correctly</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show empty state</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit event to show a specific contentlet</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotApiLinkComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should set link properties and attr correctly</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update link when href is change</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set the link relative always</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show label</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotContentletsComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should call contentlet modal</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go current portlet and reload data when modal closed</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call dotCustomEventHandlerService on customEvent</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotDevicesService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should get Devices</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditLayoutSidebarComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should propagate call from component &quot;dot-sidebar-properties&quot; into parent container</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should transform containers raw data from component &quot;dot-container-selector&quot; into proper data to be saved in the BE</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call the write value and transform the containers data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have the right header for the Sidebar Header</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotRouterService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to Content page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true if the portletid is a custom portlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to main</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to storedRedirectUrl</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to previous URL when goToMain() called</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit workflow task</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit contentlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to Starter page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false if the portletid is not a custom portlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit content type page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit page with language_id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get queryParams from Router</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set current url value</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false if the currentPortlet is not a custom portlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set previous &amp; current url value</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit page with inode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit integration service</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to create content route with provided content type variable name</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true if a portlet is jsp</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get queryParams from ActivatedRoute</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true if the currentPortlet is not a custom portlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true if edit page url</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return the correct  Portlet Id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should navigate replacing URL params</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to create integration service</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotRouterService go to login</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should add the cache busting</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to login with cache busting</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotRouterService go to logout</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should add the cache busting</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotContentCompareDialogComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should hide dialog on close</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should hide dialog on close event from DotConentCompare</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have the correct header</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should listen compare event and pass the data</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotStarterResolver</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should get and return user &amp; permissions data</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotDeviceSelectorComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have label</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add Default Device as first position</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emmit the selected Device</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set devices that have Width &amp; Height bigger than 0</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should reload options when value change</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have icon</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotDeviceSelectorComponent disabled</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should add class to the host when disabled</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should disabled dropdown when just have just one device</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotCustomReuseStrategyService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return angular default behavior on shouldDetach</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true if routeConfig match</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false if routeConfig match but reUseRoute is false</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false if routeConfig dont match</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return angular default behavior on retrieve</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return angular default behavior on shouldAttach</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">SearchableDropdownComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should renderer the pagination links</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should disabled</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be valueString equals to placeholder</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should display defaultFilterTemplate</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should display Action button</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should the pageChange call the paginate method</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not display Action button</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should render a string property in p-dataview</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should renderer the data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should render a string array of properties in p-dataview</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should reset Panel Min Height</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set CSS class, width</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have placeholder set</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">SearchableDropdownComponent emit the change event</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit the same value twice when multiple equal true</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should change the value</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit change the value once when multiple equal false</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditLayoutGridComponent show dialog for add class</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should show dot-dialog when click any add class to row button</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show dot-dialog when click any add class to box button</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotEditLayoutGridComponent</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should show dot-dialog when click any add class to column button</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add one Container to the grid of 3 columns</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create a new row with a basic configuration object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a new Container in the same row</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should trigger change when row class is add</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should remove one Container from the Grid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should Propagate Change after a grid box is deleted</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should subscribe to layour service and call addBox</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should remove the empty rows in the grid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should Propagate Change after a grid box is moved</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should resize the grid when the left menu is toggle</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show set one element in the grid of 12 columns</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should Propagate Change after a grid box is added</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should resize the grid when the layout sidebar change</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should trigger change when column class is edit</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be multiple true on dot-container-selector</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should trigger change when column class is added</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call writeValue to define the initial value of grid</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have a dot-dialog but not form</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set column class as text value</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set row class as text value</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should enabled accept add class ok button when class is not undefined</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should each box has its own payload object</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should disabled accept add class ok button when class is undefined</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a new Container in a new row, when there is no space in the last row</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should trigger change when row class is added</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add a new add class button</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotIframeService</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should trigger reload action</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should trigger ran action</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should trigger reload colors action</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">DotIframeService reload portlet data</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should reload data for content</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should reload data for vanity-urls</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should reload data for worflow</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should reload data for custom content portlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should reload data for sites</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should reload data for site-browser</span>
+      </div>
+    
+    </div>
+  
+  
+</div>
+
+<div id="details">
+  
+</div>
+
+<script>
+
+var folded = false;
+
+document.body.onkeypress = function (e) {
+  if (!e || !e.keyCode) return;
+  switch (e.keyCode) {
+    case 102: toggleFold(); break;
+    case 49: showSummary(); break;
+    
+  }
+};
+
+function showSummary() { document.body.className = "html-reporter showSummary"; }
+function showFailures() { document.body.className = "html-reporter showDetails"; }
+
+function toggleSection(el) {
+  el.className = el.className === 'summary-section' ? 'summary-section folded' : 'summary-section';
+}
+
+function toggleFold() { (folded) ? unfold() : fold(); }
+function fold() {
+  var els = document.querySelectorAll('.summary-section');
+  for (var i = 0; i < els.length; i++) {
+    els[i].className = 'summary-section folded';
+  }
+  folded = true;
+}
+function unfold() {
+  var els = document.querySelectorAll('.summary-section');
+  for (var i = 0; i < els.length; i++) {
+    els[i].className = 'summary-section';
+  }
+  folded = false;
+}
+
+</script>
+
+
+</body>
+</html>
+
