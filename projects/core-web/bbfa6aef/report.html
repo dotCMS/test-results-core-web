@@ -1,0 +1,2445 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>report</title>
+<style>
+body { background-color: #eeeeee; padding: 0; margin: 5px; overflow-y: scroll; }
+#HTMLReporter h1 { font-size: 12px; font-weight: normal; text-align: right; margin: 10px 0 10px 0 !important; }
+#HTMLReporter { font-size: 11px; font-family: Monaco, "Lucida Console", monospace; line-height: 14px; color: #333333; }
+#HTMLReporter a { text-decoration: none; }
+#HTMLReporter a:hover { text-decoration: underline; }
+#HTMLReporter p, #HTMLReporter h1, #HTMLReporter h2, #HTMLReporter h3, #HTMLReporter h4, #HTMLReporter h5, #HTMLReporter h6 { margin: 0; line-height: 14px; }
+#HTMLReporter .banner, #HTMLReporter .symbolSummary, #HTMLReporter .summary, #HTMLReporter .resultMessage, #HTMLReporter .specDetail .description, #HTMLReporter .alert .bar, #HTMLReporter .stackTrace { padding-left: 9px; padding-right: 9px; }
+
+#HTMLReporter #jasmine_content { position: fixed; right: 100%; }
+#HTMLReporter .version { color: #aaaaaa; }
+#HTMLReporter .banner { margin-top: 14px; }
+#HTMLReporter .duration { color: #aaaaaa; float: right; }
+#HTMLReporter .exceptions { color: #fff; float: right; margin-top: 5px; margin-right: 5px; }
+#HTMLReporter .bar { line-height: 28px; font-size: 14px; display: block; color: #eee; }
+#HTMLReporter .runningAlert { background-color: #666666; }
+#HTMLReporter .skippedAlert { background-color: #aaaaaa; }
+#HTMLReporter .skippedAlert:first-child { background-color: #333333; }
+#HTMLReporter .skippedAlert:hover { text-decoration: none; color: white; text-decoration: underline; }
+#HTMLReporter .passingAlert { background-color: #a6b779; }
+#HTMLReporter .passingAlert:first-child { background-color: #5e7d00; }
+#HTMLReporter .failingAlert { background-color: #cf867e; }
+#HTMLReporter .failingAlert:first-child { background-color: #b03911; }
+#HTMLReporter .results { margin-top: 14px; }
+#HTMLReporter #details { display: none; }
+#HTMLReporter .resultsMenu { color: #999; background-color: #fff; }
+
+#HTMLReporter .summaryMenuItem { font-weight: normal; text-decoration: none; margin-right: 5px; color: #333; }
+#HTMLReporter .detailsMenuItem { font-weight: normal; text-decoration: none; margin-left: 5px; color: #999; }
+
+#HTMLReporter.showDetails .summaryMenuItem { color: #999; }
+#HTMLReporter.showDetails .detailsMenuItem { color: #333; }
+#HTMLReporter.showDetails .summaryMenuItem:hover { text-decoration: underline; }
+#HTMLReporter             .detailsMenuItem:hover { text-decoration: underline; }
+
+
+#HTMLReporter.showDetails .summary { display: none; }
+#HTMLReporter.showDetails #details { display: block; }
+#HTMLReporter .summary { margin-top: 14px; margin-bottom: 40px; }
+#HTMLReporter .summary .suite .suite, #HTMLReporter .summary .specSummary { margin-left: 14px; }
+#HTMLReporter .summary .specSummary.passed { color: #5e7d00; }
+#HTMLReporter .summary .specSummary.failed { color: #b03911; }
+#HTMLReporter .summary .specSummary.skipped { color: #ba9d37; }
+#HTMLReporter .description + .suite { margin-top: 0; }
+#HTMLReporter .suite { margin-top: 14px; }
+#HTMLReporter .suite a { color: #333333; }
+#HTMLReporter #details .specDetail { margin-bottom: 28px; }
+#HTMLReporter #details .specDetail .description { display: block; color: white; background-color: #b03911; }
+#HTMLReporter .resultMessage { padding-top: 14px; color: #333333; }
+#HTMLReporter .resultMessage span.result { display: block; }
+#HTMLReporter .stackTrace { margin: 5px 0 0 0; max-height: 224px; overflow: auto; 
+    line-height: 18px; color: #666666; border: 1px solid #ddd; background: white; white-space: pre; }
+
+
+.fold-buttons { float: right; }
+.fold-buttons a { color: #fff; font-size: 12px; }
+.fold-buttons { display: none } 
+#HTMLReporter .br { margin-top: 8px; }
+#HTMLReporter .section-starter { font-size: 14px; line-height: 18px }
+#HTMLReporter .summary-section { 
+  cursor: -webkit-zoom-out; cursor: -moz-zoom-out; cursor: zoom-out; 
+  background: #fafafa; 
+  padding: 10px; 
+  border-bottom: #eaeaea 1px solid; }
+#HTMLReporter .summary-section.folded { 
+  cursor: -webkit-zoom-in; cursor: -moz-zoom-in; cursor: zoom-in; 
+  padding-bottom: 8px;
+}
+#HTMLReporter .summary-section.folded div { display: none }
+#HTMLReporter .summary-section.folded div.section-starter { display: block }
+/*#HTMLReporter .summary-section:hover { background: #e9e9e9; }*/
+#HTMLReporter .summary-section:hover { background: #f5f5f5; }
+#HTMLReporter .summary-section-totals { 
+  font-size: 11px;
+  display: none; 
+  margin-left: 11px; 
+  overflow: hidden; 
+  position: relative;
+  top: -1px; 
+}
+#HTMLReporter .summary-section.folded .summary-section-totals { display: inline; }
+#HTMLReporter .summary-section-total { color: #fff; vertical-align: baseline; padding: 1px 8px; }
+#HTMLReporter .summary-section-total.passed { background: #5e7d00;  }
+#HTMLReporter .summary-section-total.failed { background: #b03911;  }
+#HTMLReporter .summary-section-total.skipped { background: #ba9d37;  }
+
+#HTMLReporter { font-size: 12px; line-height: 18px; } /*larget font-size*/
+
+</style>
+</head>
+
+<body id="HTMLReporter" class="html-reporter">
+<h1>Tested in Chrome Headless 110.0.5481.177 (Linux x86_64) on Sat Mar 04 2023</h1>
+
+<div class="alert">
+
+
+
+  
+  <span class="passingAlert bar"><span class="fold-buttons"><a href="#" onclick="fold();">Fold</a> | 
+  <a href="#" onclick="unfold();">Unfold</a></span>440 specs, 0 failed, 5 pending</span>
+  
+
+
+</div>
+<div class="results">
+  <div class="summary">
+  
+  
+  
+  
+  
+    <div class="suite passed">
+      <span class="description">0</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should throw error on get apps and handle it</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should throw error on get apps and handle it</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Should do the put request to remove the getting starter portlet to menu</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Should update user data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Should do the put request to add the getting starter portlet to menu</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">1</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should throw error on delete all configurations from an app and handle it</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should delete all configurations from an app</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should throw error on delete a specific app and handle it</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get a specific app</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should delete a specific configuration from an app</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get apps</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get filtered app</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should throw error when export apps configuration</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should throw error on get a specific app and handle it</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should import apps</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should throw error on get apps and handle it</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should save a specific configuration from an app</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should throw error on Save a specific app and handle it</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should export apps configuration</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">2</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should transform the grid data to LayoutBody to export the data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Should set _canBeDesactivated to true</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should transform the data from the service to the grid format </span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Should set _closeEditLayout to true</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit add box event</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should transform the Sidebar data to ContainerColumnBox (ignore UNKNOWN ids) to export the data</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">3</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should throw error 500 on create custom tool error</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should clean up Portlet Id value</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create a custom tool portlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should add to layout a custom tool portlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should throw error 400 on add to layout custom portlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should throw null on create custom tool error 400</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">4</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should get and return user &amp; permissions data</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">5</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have don't have permissions messages</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">6</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should blink</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have message</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">7</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not have error messages</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">8</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should get a categories list</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get a children categories list</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">9</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should save button disable but code field is not required</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should save button disable after save</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should setup Max Contents</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should setup description</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should save button enable when data change</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should save button disable</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should redirect to containers list after save</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should clear the field</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should setup title</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should focus on title field</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should setup code</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should clear the field when user click on clear button</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should render content types when max-content greater then zero</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">10</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be invalid by default</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should reset from to initial value and clear tempUploadedFile</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit if form is invalid after changes</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit isValid to false when the file upload starts</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update input name when set form name</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should clear photo form value and tempUploadedFile when remove image</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update the dot-site-selector-field value when set the form hostFolder value</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set the p-fileUpload with the correctly attributes</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set Key Tag camel case based on the name value</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should load labels correctly</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit if form is valid after changes</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should pass placeholder correctly to DotAutocompleteTags</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set initial value of the form on load</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set the photo id and tempUploadedFile after image upload</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">11</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be valid on load</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set name if passed on initial load</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">12</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should allow access to Menu Portlets</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should prevent children access to Menu Portlets</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should allow children access to Menu Portlets</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should prevent access to Menu Portlets</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">13</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should set app data to service Card</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should export All button be enabled</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should open confirm dialog and export All configurations</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set App from resolver</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should contain 2 app configurations</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should contain a dot-icon and a link with info on how to create apps</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set messages to Search Input</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set false to dialog state when closed Import/Export dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should open confirm dialog and import configurations</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should reload apps data when resolve action from Import/Export dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should redirect to detail configuration list page when app Card clicked</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">14</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should display not licensed component</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">15</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should go Back when Go Back button clicked</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show Go Back button</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">16</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should show right message and no &quot;Show More&quot; link when no configurations and description short</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should redirect to detail configuration list page when app Card clicked</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should DotCopy &amp; DotAvatar with right properties</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should set messages/values in DOM correctly</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">17</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should change view to contentlets and set viewContentlet Variable on contentlets palette view</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set value on store on filtering event</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should dot-palette-content-type have items assigned</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set value on store on paginate event</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should change view to content type and unset viewContentlet Variable on contentlets palette view</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call filterContentTypes when content type compenent emits filter event</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set allowedContent</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">18</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should receive the steps</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should receive output on open subscription</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">19</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should allow access to the requested route if User is NOT logged in</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should redirect to to Main Portlet if User is logged in</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">20</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should show DotKeyValue component with right values</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should delete from local collection</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update local collection with saved value</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should save configuration when Save button clicked</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">21</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should redirect to Apps page when Cancel button clicked</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set App from resolver</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set Save button disabled to false with valid form</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should save configuration when Save button clicked</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set labels and buttons with right values</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have dot-copy-link with appKey value</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update formData and formValid fields when dot-apps-configuration-detail-form changed</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set form component with fields &amp; app configured data</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">22</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should get and return app with configurations</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">23</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">24</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should set iframe permissions url</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">25</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not call filterContentTypes is filter values es shoter than 3 caracteres</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update setLoaded</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should load contentTypes to store</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should load Forms contentlets to store</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update setLoading</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update filter</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should filter contenttypes in stores</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update allowdContent</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update viewContentlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set filter value in store</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should load Product contentlets to store</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update languageId</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should load inly widgets to store if allowedContent is empty</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">26</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should deny access to Pages Portlets</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should allow access to Pages Portlets</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">27</span>
+    
+      <div class="specSummary skipped">
+      <span class="description">should renders the dot empty state component if items array is empty</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">should have default attributes</span>
+      </div>
+    
+      <div class="specSummary skipped">
+      <span class="description">renderer basic datatable component</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">28</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should send configuration to import apps and close dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have right labels and accept be disabled</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">29</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should send configuration to export all sites from a single app and close dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should send configuration to export a single site from a single app and close dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have right params and accept be disabled</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should send configuration to export all apps and not close dialog on Error</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should clear values when dialog closed</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should send configuration to export all apps and close dialog</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">30</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should redirect to to Main Portlet always</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">31</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">32</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should set iframe permissions url</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">33</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should receive bundleID</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">34</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return the right container</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return the right container identifier</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">35</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should Load More button be enabled</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">36</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit action for delete --&gt; Site Item</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit action for export --&gt; Site Item</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should Load More button emit action</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should Load More button be enabled</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit action for edit --&gt; Site Item</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set messages/values in DOM correctly</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">37</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should update menu items when new PageState</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have basic menu items</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">38</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should call the ContentletEditorService Edit when clicked on Properties button</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have correct item active</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have menu list</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">39</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should has Experiments nav item</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">40</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not has Experiments item</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">41</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should the layout option have the proper attribute &amp; message key for tooltip</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have layout option disabled because user does not has a proper license</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">42</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have layout option enabled because user has an enterprise license</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">43</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have layout and rules option disabled and enterprise only message when template is advance and license is comunity</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have layout option disabled and cant edit message when template is advance and license is enterprise</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have code option disabled because user can not edit the page thus the layout or template</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">44</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have menu items: Content and Layout</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">45</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should only background colors</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should only secondary colors</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should only primary colors</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set all colors</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not set invalid colors</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">46</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should post to create a container</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should put to update a container</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should unPublish a container</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get a container by id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should publish a container</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get a list of containers</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should unArchive a container</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should archive a container</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get a containers by filter</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should copy a container</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should put to save and publish a container</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should delete a container</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">47</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should set initial data</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">48</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should delete Favorite Page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle error when create/save Favorite Page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should Edit a Favorite Page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle error when delete Favorite Page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create a Favorite Page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set initial data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should update setRenderThumbnail flag</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have closeDialog$ Selector</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have form data Selector</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have renderThumbnail$ Selector</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have actionState$ Selector</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">49</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should do a post request and push publish an asset with no filter</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should do a post with the correct URL when is a bundle</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get push publish environments</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should do a post request and push publish an asset</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should do a post request and push publish Remove an asset</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">50</span>
+    
+      <div class="specSummary passed">
+      <span class="description">Should return the photos url</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">Should return null</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">51</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not have warning icon</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have 1 icon button for create</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit edit action with No site</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">52</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have 3 icon buttons for export, delete and edit</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should DotCopy with right properties</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have warning icon</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit export action with a site</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set messages/values in DOM correctly</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not emit edit action when host label clicked</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit delete action</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit edit action with a site</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit edit action when host component clicked</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">53</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">54</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should set iframe history url</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">55</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should load existing thumbnail and reload thumbnail button</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call delete method on clicking Remove button</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should button Remove Favorite be enabled</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call render thumbnail method on clicking Reload button</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">56</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should setup title</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should setup url</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should setup thumbnail preview</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should setup order</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should setup permissions</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">57</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should setup &lt;form&gt; class</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">58</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should call save functionality in store</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should exist a Remove Favorite with attributes</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call cancel from config</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should exist binding of store Loading state property to dot-form-dialog component</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">59</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should call close ref event when closeDialog event is executed from store</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call onSave ref event when actionState event is executed from store with Saved value</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call onDelete ref event when actionState event is executed from store with Deleted value</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">60</span>
+    
+      <div class="specSummary skipped">
+      <span class="description">should be valid when emitted thumbnail</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be valid when required fields are set</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get value from config and set initial data on store</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should be invalid by default</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">61</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should prevent children access to Content Types Portlets</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should allow children access to Content Types Portlets</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">62</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have warning icon</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set messages/values in DOM correctly</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have disabled css class</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have avatar with right values</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">63</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have avatar with right values</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set messages/values in DOM correctly</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not have warning icon</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not have disabled css class</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">64</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should notify to open contnt compare dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should notify to open push publish dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should notify to open download bundle dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should notify to open generate secure password dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should notify to open download bundle dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create a contentlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should edit a contentlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should edit a a workflow task</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set colors in the ui</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show loading indicator and go to edit page when event is emited by iframe</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">65</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should show empty state</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should filter items on search</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show loading state</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not show loading state when switching view</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should list items correctly</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set Dragged ContentType on dragStart</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit event to show a specific contentlet</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">66</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have router-outlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should init message service</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set ui colors</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">67</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not have api link</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not have copy button</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">68</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have api link</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have copy button</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set page title</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">69</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit paginate event</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should load with No Results data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should load initial params correctly with contentlets</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should filter Product item</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set Dragged ContentType on dragStart</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit go back</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">70</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">71</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return max width --&gt; 140px</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return max widht --&gt; 67 (taking 7 as the size of each character)</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">72</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should put to save and publish a template</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get a list of templates</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get a template by id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should copy a template</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should publish a template</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should delete a template</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should unArchive a template</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should archive a template</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get a templates by filter</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should post to create a template</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should unPublish a template</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should put to update a template</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">73</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should set pagination params, get first page, check license and publish environments</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">74</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true if edit page url</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to storedRedirectUrl</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true if the portletid is a custom portlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit content type page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit page with inode</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false if the portletid is not a custom portlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false if the currentPortlet is not a custom portlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true if the currentPortlet is not a custom portlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to Content page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to Starter page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set current url value</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit workflow task</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit contentlet</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set previous &amp; current url value</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to create content route with provided content type variable name</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to create integration service</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit page with language_id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get queryParams from Router</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit page</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to edit integration service</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should get queryParams from ActivatedRoute</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return the correct  Portlet Id</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to previous URL when goToMain() called</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true if a portlet is jsp</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to main</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should navigate replacing URL params</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">75</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should add the cache busting</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">76</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should add the cache busting</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should go to login with cache busting</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">77</span>
+    
+      <div class="specSummary passed">
+      <span class="description">shoud have empty content type message</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set labels</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">shoud have add loader on content types</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">shoud not have required code field on default content type</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">78</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have remove content type and focus on another content type</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have add content type</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have select content type and focus on field</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">79</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should denied access to the requested route, User is NOT logged in</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should allow access to the requested route, User is logged in</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">80</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return page by id from router</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">81</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should set actions to publish template</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should clicked on row and emit dotRouterService</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should select all except system and file container</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should hide action of file or system container</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set attributes of dotListingDataTable</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set actions to unPublish template</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set actions to archived template</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should click on file container and move on Browser Screen</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">82</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit changes in content types selector</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">83</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle 400 error and show reponse message</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle 204 error</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle 401 error when user is login we use 403</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle 401 error when user is logout and redirect to login</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle 403 error</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle 500 error</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle license error</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle 400 error on message</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle 400 error on errors[0]</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle 400 error on error.errors[0]</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">84</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should load Label, Select &amp; Hint with right attributes</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should Button open link on new tab when clicked on a configured app</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should load Label, Textarea &amp; Hint with right attributes</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should load Label, Button &amp; Hint with right attributes</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit form state when loaded</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should load Checkbox &amp; Hint with right attributes</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should focus on first input when loaded</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit form state disabled when required field empty</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not have warning icon</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should load form components</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit form state when value changed</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should Button be disabled when no configured app</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">85</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should have warning icons</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">86</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should upload a file by url</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should upload a file by file</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle error</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">87</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should save changes in the editor</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should display a toast on saving error</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should close the sidebar</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set sidebar with correct inputs</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set inputs to the block editor</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">88</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not set a new logo</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set a new logo</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not set a logo if the logo string doesn't starts with /dA</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">89</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">90</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should show post_loop</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show pre post loop button when Editor is not visible</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show pre_loop</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should create</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">91</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not copy and habdle error</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should copy</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">92</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should call add from list and apply mask in variable</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">93</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should get and return apps with configurations</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">94</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should be created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set _closeEditLayout when canBeDesactivated is false</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">canBeDesactivated should be false</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should le the user left the route when _canBeDesactivated is true</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">95</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should render html and script</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should clear content and render html</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should append content </span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">96</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should process workflow payload</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set wizard input</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return only valid Components </span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">97</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false and display a notification is there are no environments </span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true if there are environments</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">98</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should open with the correct data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should run iframe function for legacy call</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fire BULK action with the correct data, execute the callback and send a message on output</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should fire the workflow action with the correct data, execute the callback and send a message on output</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">99</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should return true if there are Push Publish inputs</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should return false if there are no Push Publish inputs</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">100</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should not show remove option if content type is defaultType</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show remove option</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should handle error if is not possible delete the content type</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should remove the content type on click command function</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have remove, push publish, Copy and Add to bundle actions to the list item</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should show Add to Menu option</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should open Add to Menu dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not set primary command in the header options</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should populate the actionHeaderOptions based on a call to dotContentletService</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have remove and add to bundle actions if is not community license and no publish environments are created</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should display a listing-data-table.component</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should emit changes in base types selector</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have ONLY remove action because is community license</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should open add to bundle dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should open push publish dialog</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not show Add To Menu option if content type is HOST</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">101</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should set filterBy params</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should not display base types selector</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">102</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should get if portlet can be accessed</span>
+      </div>
+    
+    </div>
+  
+    <div class="suite passed">
+      <span class="description">103</span>
+    
+      <div class="specSummary passed">
+      <span class="description">should set onInit Pagination Service with right values</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call first pagination call onInit</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should open confirm dialog and export All configurations</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set App from resolver</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set params in export dialog attribute</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should export a specific configuration</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should set messages/values in DOM correctly</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should delete a specific configuration</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should have dot-apps-configuration-list with correct values</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should open confirm dialog and delete All configurations</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should input search be focused on init</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should dot-apps-configuration-list emit action to load more data</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should call App filter on search</span>
+      </div>
+    
+      <div class="specSummary passed">
+      <span class="description">should redirect to goto configuration page action</span>
+      </div>
+    
+    </div>
+  
+  
+</div>
+
+<div id="details">
+  
+</div>
+
+<script>
+
+var folded = false;
+
+document.body.onkeypress = function (e) {
+  if (!e || !e.keyCode) return;
+  switch (e.keyCode) {
+    case 102: toggleFold(); break;
+    case 49: showSummary(); break;
+    
+  }
+};
+
+function showSummary() { document.body.className = "html-reporter showSummary"; }
+function showFailures() { document.body.className = "html-reporter showDetails"; }
+
+function toggleSection(el) {
+  el.className = el.className === 'summary-section' ? 'summary-section folded' : 'summary-section';
+}
+
+function toggleFold() { (folded) ? unfold() : fold(); }
+function fold() {
+  var els = document.querySelectorAll('.summary-section');
+  for (var i = 0; i < els.length; i++) {
+    els[i].className = 'summary-section folded';
+  }
+  folded = true;
+}
+function unfold() {
+  var els = document.querySelectorAll('.summary-section');
+  for (var i = 0; i < els.length; i++) {
+    els[i].className = 'summary-section';
+  }
+  folded = false;
+}
+
+</script>
+
+
+</body>
+</html>
+
